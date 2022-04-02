@@ -36,14 +36,18 @@ func relock():
 	if locks.size()>=1:
 		locks[0].activate()
 
-func _on_Area2D_area_entered(area):
-	if not area is Wavelet:
+
+func _on_Area2D_body_entered(body):
+	if not body is Wavelet:
 		return
+	
+	var wave=body
+	wave.queue_free()
 	
 	if open:
 		return
 	
-	var key = area.note.key;
+	var key = wave.note.key;
 	if key in ignore_note_timer:
 		return
 	
@@ -54,7 +58,7 @@ func _on_Area2D_area_entered(area):
 	timer.one_shot=true
 	timer.start(0.5)
 	
-	var note = area.note
+	var note = wave.note
 	var n = locks.size()
 	for i in range(n):
 		var lock=locks[i]
@@ -91,3 +95,4 @@ func _on_LockTimer_timeout():
 func _on_OpenTimer_timeout():
 	$Audio_Open.play()
 	open()
+

@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 class_name Wavelet
 
 const Note = preload("Note.gd")
@@ -12,8 +12,9 @@ var p2 = Vector2(0,110)
 var a1=-PI/10
 var a2=PI/10
 var source = null
-var impulse = 100000
+var impulse = 10000
 var age = 0.0
+var energy=1.0
 
 
 func _ready():
@@ -28,8 +29,11 @@ func _process(delta):
 		split()
 	
 	age+=delta
+	#if age > max_age:
+	#	queue_free()
 	
-	if age > max_age:
+	energy=energy*pow(0.25,delta)
+	if energy < 0.01: 
 		queue_free()
 			
 	#var angle = get_global_rotation();
@@ -38,11 +42,33 @@ func _process(delta):
 	p1+=Vector2(speed,0).rotated(a1);
 	p2+=Vector2(speed,0).rotated(a2);
 	
-	var p = (p1+p2)/2
-	var a = a1+(fmod(a2-a1,PI)/2)
-	set_global_transform(Transform2D(a,p))
+	var newpos = (p1+p2)/2
+	var newangle = a1+(fmod(a2-a1,PI)/2)
 	
-	var alpha = 1.0-(age/max_age) 
+	set_global_rotation(newangle);
+	var oldpos = get_global_position()
+	var collision = move_and_collide(newpos-oldpos)
+	
+	if collision !=null and collision.collider != source:
+		oldpos = newpos
+		newpos = get_global_position()
+		var oldangle = newangle
+		var colangle = collision.normal.angle()
+		newangle = colangle+(colangle-oldangle)*2
+		#newangle = oldangle+PI
+		#newangle = colangle
+		set_global_rotation(newangle);
+		p1 = newpos + (p1-oldpos).rotated(newangle-oldangle)
+		p2 = newpos + (p2-oldpos).rotated(newangle-oldangle)
+		a1 = a1+(newangle-oldangle)
+		a2 = a2+(newangle-oldangle)
+		source=collision.collider
+		# move a bit further
+		
+		
+	
+	#var alpha = 1.0-(age/max_age)
+	var alpha = energy 
 	var color=note.color()
 	self.modulate=Color(color.r,color.g,color.b,alpha)
 	
@@ -54,6 +80,7 @@ func split():
 	
 	var wavelet1 = duplicate()
 	wavelet1.age=age
+	wavelet1.energy=energy/2
 	wavelet1.p1 = p1
 	wavelet1.p2 = p
 	wavelet1.a1 = a1
@@ -65,6 +92,7 @@ func split():
 	
 	var wavelet2 = duplicate()
 	wavelet2.age=age
+	wavelet2.energy=energy/2
 	wavelet2.p1 = p
 	wavelet2.p2 = p2
 	wavelet2.a1 = a
@@ -76,7 +104,7 @@ func split():
 	
 
 
-func _on_Wavelet_body_entered(body):
-	if body != source:
-		queue_free()
+#func _on_Wavelet_body_entered(body):
+#	if body != source:
+#		queue_free()
 	

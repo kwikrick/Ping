@@ -19,9 +19,6 @@ bounce = 1.0
 [node name="Main" type="Node2D"]
 
 [node name="Room0" type="Node2D" parent="."]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Background" type="Polygon2D" parent="Room0"]
 position = Vector2( 0, 568 )
@@ -40,6 +37,7 @@ key = "G"
 
 [node name="Wall11" type="StaticBody2D" parent="Room0"]
 position = Vector2( 0, 592 )
+collision_layer = 4
 physics_material_override = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -54,11 +52,28 @@ polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 [node name="Wall13" type="StaticBody2D" parent="Room0"]
 position = Vector2( 256, 1144 )
 physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Polygon2D" type="Polygon2D" parent="Room0/Wall13"]
 polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room0/Wall13"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="Wall14" type="StaticBody2D" parent="Room0"]
+position = Vector2( 608, 912 )
+rotation = 1.0472
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room0/Wall14"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room0/Wall14"]
 polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 
 [node name="Wall12" type="StaticBody2D" parent="Room0"]

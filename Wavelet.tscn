@@ -6,7 +6,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[node name="Wavelet" type="Area2D"]
+[node name="Wavelet" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -16,5 +17,3 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.125, 0.25 )
 texture = ExtResource( 1 )
-
-[connection signal="body_entered" from="." to="." method="_on_Wavelet_body_entered"]

@@ -52,7 +52,7 @@ func _physics_process(delta):
 	set_applied_force(Vector2(0,0))
 	set_applied_torque(0)
 	
-	add_force(Vector2(0,0),impulse*delta)
+	add_force(Vector2(0,0),impulse)
 	impulse=Vector2(0,0)
 
 	# get and compute some directions and velocities
@@ -101,7 +101,11 @@ func _physics_process(delta):
 	add_force(Vector2(0,0),right_friction_force)
 	add_torque(angular_friction_torque)
 
-func _on_Area2D_area_entered(area):
-	if area is Wavelet and area.source!=self:
-		var angle = area.get_global_rotation()
-		impulse += Vector2(area.impulse,0).rotated(angle)
+
+func _on_Area2D_body_entered(body):
+	if body is Wavelet:
+		var wave=body
+		if wave.source!=self:
+			var angle = wave.get_global_rotation()
+			impulse += Vector2(wave.impulse*wave.energy,0).rotated(angle)
+			wave.queue_free()

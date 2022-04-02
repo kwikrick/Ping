@@ -4,6 +4,8 @@
 [ext_resource path="res://assets/38700__elanhickler__archi-sonar-01.wav" type="AudioStream" id=2]
 
 [node name="FreeTransponder" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 5
 linear_damp = 1.0
 script = ExtResource( 1 )
 
@@ -28,8 +30,7 @@ polygon = PoolVector2Array( -8, -16, 0, -16, 8, -16, 16, -8, 16, 0, 16, 8, 8, 16
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
-polygon = PoolVector2Array( -8, -16, 0, -16, 8, -16, 16, -8, 16, 0, 16, 8, 8, 16, 0, 16, -8, 16, -16, 8, -16, -8 )
+polygon = PoolVector2Array( -8, -20, 8, -20, 20, -8, 20, -8, 20, 8, 20, 8, 8, 20, 0, 20, -8, 20, -20, 8, -20, -8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
@@ -39,4 +40,5 @@ wait_time = 0.1
 one_shot = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

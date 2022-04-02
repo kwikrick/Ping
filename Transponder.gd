@@ -57,16 +57,27 @@ func _physics_process(delta):
 	set_applied_force(Vector2(0,0))
 	set_applied_torque(0)
 	
-	add_force(Vector2(0,0),impulse*delta)
+	add_force(Vector2(0,0),impulse)
 	impulse=Vector2(0,0)
 
-func _on_Area2D_area_entered(area):
-	if area is Wavelet and area.source!=self:
-		var angle = area.get_global_rotation()
-		impulse += Vector2(area.impulse,0).rotated(angle)
-		if area.note.key == receive_key:
-			ping()
+#func _on_Area2D_area_entered(area):
+#	if area is Wavelet and area.source!=self:
+#		var angle = area.get_global_rotation()
+#		impulse += Vector2(area.impulse,0).rotated(angle)
+#		if area.note.key == receive_key:
+#			ping()
 
 func _on_Timer_timeout():
 	ready=true
 	
+
+
+func _on_Area2D_body_entered(body):
+	if body is Wavelet:
+		var wave=body
+		if body.source!=self:
+			var angle = wave.get_global_rotation()
+			impulse += Vector2(wave.impulse*wave.energy,0).rotated(angle)
+			wave.queue_free()
+			if wave.note.key == receive_key:
+				ping()

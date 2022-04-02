@@ -30,7 +30,7 @@ polygon = PoolVector2Array( 8, 0, 120, 0, 128, 8, 128, 56, 120, 64, 8, 64, 0, 56
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area2D"]
 position = Vector2( -64, -32 )
-polygon = PoolVector2Array( 8, 0, 120, 0, 128, 8, 128, 56, 120, 64, 8, 64, 0, 56, 0, 8 )
+polygon = PoolVector2Array( 8, -4, 120, -4, 132, 8, 132, 56, 120, 68, 8, 68, -4, 56, -4, 8 )
 
 [node name="OpenTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -41,5 +41,6 @@ wait_time = 0.5
 one_shot = true
 
 [connection signal="area_entered" from="Body/Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="OpenTimer" to="." method="_on_OpenTimer_timeout"]
 [connection signal="timeout" from="LockTimer" to="." method="_on_LockTimer_timeout"]
