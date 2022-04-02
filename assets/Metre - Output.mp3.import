@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Metre - Output.mp3-d7d930312f83f50b715d2ff585b9bcae.mp3str"
+
+[deps]
+
+source_file="res://assets/Metre - Output.mp3"
+dest_files=[ "res://.import/Metre - Output.mp3-d7d930312f83f50b715d2ff585b9bcae.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

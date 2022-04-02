@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/493163__breviceps__buzzer-sounds-1-wrong-answer-error.wav-b8be2f89687f0c0949f7e7eb368df274.sample"
+
+[deps]
+
+source_file="res://assets/493163__breviceps__buzzer-sounds-1-wrong-answer-error.wav"
+dest_files=[ "res://.import/493163__breviceps__buzzer-sounds-1-wrong-answer-error.wav-b8be2f89687f0c0949f7e7eb368df274.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
