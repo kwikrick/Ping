@@ -19,6 +19,9 @@ bounce = 1.0
 [node name="Main" type="Node2D"]
 
 [node name="Room0" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Background" type="Polygon2D" parent="Room0"]
 position = Vector2( 0, 568 )
@@ -48,33 +51,6 @@ polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room0/Wall11"]
 polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
-
-[node name="Wall13" type="StaticBody2D" parent="Room0"]
-position = Vector2( 256, 1144 )
-physics_material_override = SubResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Polygon2D" type="Polygon2D" parent="Room0/Wall13"]
-polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room0/Wall13"]
-polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
-
-[node name="Wall14" type="StaticBody2D" parent="Room0"]
-position = Vector2( 608, 912 )
-rotation = 1.0472
-physics_material_override = SubResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Polygon2D" type="Polygon2D" parent="Room0/Wall14"]
-polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room0/Wall14"]
-polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 
 [node name="Wall12" type="StaticBody2D" parent="Room0"]
 position = Vector2( 320, 592 )
@@ -1229,6 +1205,124 @@ position = Vector2( 648, 24 )
 rotation = 1.5708
 transmit_key = "D"
 receive_key = "C"
+
+[node name="Room4" type="Node2D" parent="."]
+position = Vector2( 0, 552 )
+
+[node name="Door0" parent="Room4" instance=ExtResource( 3 )]
+position = Vector2( 512, 592 )
+
+[node name="Lock1" parent="Room4/Door0" instance=ExtResource( 4 )]
+position = Vector2( -8, -16 )
+key = "G"
+
+[node name="Wall11" type="StaticBody2D" parent="Room4"]
+position = Vector2( 0, 592 )
+collision_layer = 4
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall11"]
+polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall11"]
+polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
+
+[node name="Wall13" type="StaticBody2D" parent="Room4"]
+position = Vector2( 160, 1328 )
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall13"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall13"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="Wall14" type="StaticBody2D" parent="Room4"]
+position = Vector2( 584, 824 )
+rotation = 1.0472
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall14"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall14"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="Wall15" type="StaticBody2D" parent="Room4"]
+position = Vector2( 80, 784 )
+rotation = 0.392287
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall15"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall15"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="Wall16" type="StaticBody2D" parent="Room4"]
+position = Vector2( 80, 904 )
+rotation = 0.764558
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall16"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall16"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="Wall12" type="StaticBody2D" parent="Room4"]
+position = Vector2( 320, 592 )
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall12"]
+polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall12"]
+polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
+
+[node name="Wall5" type="StaticBody2D" parent="Room4"]
+position = Vector2( 1024, 688 )
+physics_material_override = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall5"]
+polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall5"]
+polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
+
+[node name="Wall6" type="StaticBody2D" parent="Room4"]
+position = Vector2( 0, 528 )
+physics_material_override = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall6"]
+polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall6"]
+polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 832 )

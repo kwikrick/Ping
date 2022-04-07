@@ -3,7 +3,6 @@ class_name Wavelet
 
 const Note = preload("Note.gd")
 
-const max_age = 1.0
 const speed = 4.0
 
 var note = Note.new("G")
@@ -13,9 +12,11 @@ var a1=-PI/10
 var a2=PI/10
 var source = null
 var impulse = 10000
-var age = 0.0
 var energy=1.0
 
+#var merged=false
+
+var is_Wavelet
 
 func _ready():
 	var p = (p1+p2)/2
@@ -24,20 +25,16 @@ func _ready():
 
 func _process(delta):
 	
+#	if merged:
+#			return
+	
 	var d = (p2-p1).length()
 	if d>16:
 		split()
 	
-	age+=delta
-	#if age > max_age:
-	#	queue_free()
-	
 	energy=energy*pow(0.25,delta)
 	if energy < 0.01: 
 		queue_free()
-			
-	#var angle = get_global_rotation();
-	#var forward = Vector2(1,0).rotated(angle)
 	
 	p1+=Vector2(speed,0).rotated(a1);
 	p2+=Vector2(speed,0).rotated(a2);
@@ -50,24 +47,29 @@ func _process(delta):
 	var collision = move_and_collide(newpos-oldpos)
 	
 	if collision !=null and collision.collider != source:
-		oldpos = newpos
-		newpos = get_global_position()
-		var oldangle = newangle
-		var colangle = collision.normal.angle()
-		newangle = colangle+(colangle-oldangle)*2
-		#newangle = oldangle+PI
-		#newangle = colangle
-		set_global_rotation(newangle);
-		p1 = newpos + (p1-oldpos).rotated(newangle-oldangle)
-		p2 = newpos + (p2-oldpos).rotated(newangle-oldangle)
-		a1 = a1+(newangle-oldangle)
-		a2 = a2+(newangle-oldangle)
-		source=collision.collider
-		# move a bit further
+		if "is_Wavelet" in collision.collider:
+			set_global_position(newpos)
+			#var wavelet = collision.collider
+			#if wavelet.source != source and wavelet.note.key==note.key:
+			#	merge(collision.collider)
+		else:
+			oldpos = newpos
+			newpos = get_global_position()
+			var oldangle = newangle
+			var colangle = collision.normal.angle()
+			newangle = colangle+(colangle-oldangle)*2
+			#newangle = oldangle+PI
+			#newangle = colangle
+			set_global_rotation(newangle);
+			p1 = newpos + (p1-oldpos).rotated(newangle-oldangle)
+			p2 = newpos + (p2-oldpos).rotated(newangle-oldangle)
+			a1 = a1+(newangle-oldangle)
+			a2 = a2+(newangle-oldangle)
+			source=collision.collider
+			energy = energy*.90
+			# TODO: move a bit further in reflected distance
+			
 		
-		
-	
-	#var alpha = 1.0-(age/max_age)
 	var alpha = energy 
 	var color=note.color()
 	self.modulate=Color(color.r,color.g,color.b,alpha)
@@ -79,7 +81,6 @@ func split():
 	var a = a1+(fmod(a2-a1,PI)/2)
 	
 	var wavelet1 = duplicate()
-	wavelet1.age=age
 	wavelet1.energy=energy/2
 	wavelet1.p1 = p1
 	wavelet1.p2 = p
@@ -91,7 +92,6 @@ func split():
 	$"..".add_child(wavelet1)
 	
 	var wavelet2 = duplicate()
-	wavelet2.age=age
 	wavelet2.energy=energy/2
 	wavelet2.p1 = p
 	wavelet2.p2 = p2
@@ -103,8 +103,25 @@ func split():
 	$"..".add_child(wavelet2)
 	
 
-
-#func _on_Wavelet_body_entered(body):
-#	if body != source:
-#		queue_free()
-	
+#func merge(wavelet):
+#	wavelet.queue_free()
+#	wavelet.merged = true   # prevent merging twice
+#	queue_free()
+#
+#	var wavelet2 = duplicate()
+#	wavelet2.energy=energy+wavelet.energy
+#	wavelet2.p1 = (p1 + wavelet.p1)/2
+#	wavelet2.p2 = (p2 + wavelet.p2)/2
+#	var a = a1+(fmod(a2-a1,PI)/2)
+#	var d = abs(a1-a)
+#	var wa = wavelet.a1+(fmod(wavelet.a2-wavelet.a1,PI)/2)
+#	var wd = abs(wavelet.a1-wa) 
+#	var ma = a+(fmod(wa-a,PI)/2)
+#	var w = (wa+wd)/2
+#	wavelet2.a1 = ma - w
+#	wavelet2.a2 = ma + w
+#	wavelet2.source=null
+#	wavelet2.note=Note.new("A")				# TEMP; wavelet.note must be same as mine?
+#	wavelet2.impulse=(impulse+wavelet.impulse)/2
+#	$"..".add_child(wavelet2)
+#
