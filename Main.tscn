@@ -1209,6 +1209,14 @@ receive_key = "C"
 [node name="Room4" type="Node2D" parent="."]
 position = Vector2( 0, 552 )
 
+[node name="Background" type="Polygon2D" parent="Room4"]
+position = Vector2( 0, 568 )
+scale = Vector2( 1.0056, 0.990628 )
+z_index = -1
+color = Color( 0, 0, 0, 1 )
+antialiased = true
+polygon = PoolVector2Array( 262.53, 32.3027, 755.768, 32.3027, 1439.94, 977.158, -477.327, 993.309 )
+
 [node name="Door0" parent="Room4" instance=ExtResource( 3 )]
 position = Vector2( 512, 592 )
 
@@ -1299,7 +1307,7 @@ polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 
 [node name="Wall5" type="StaticBody2D" parent="Room4"]
-position = Vector2( 1024, 688 )
+position = Vector2( 888, 464 )
 physics_material_override = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -1312,7 +1320,7 @@ polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 
 [node name="Wall6" type="StaticBody2D" parent="Room4"]
-position = Vector2( 0, 528 )
+position = Vector2( -56, 1200 )
 physics_material_override = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true

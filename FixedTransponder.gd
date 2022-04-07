@@ -56,7 +56,7 @@ func _on_Area2D_body_entered(body):
 	if body is Wavelet:
 		var wave=body
 		if wave.source!=self:
-			#wave.queue_free()
+			wave.queue_free()
 			if wave.note.key == receive_key:
 				ping()
 

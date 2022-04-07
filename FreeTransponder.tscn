@@ -36,7 +36,7 @@ polygon = PoolVector2Array( -8, -20, 8, -20, 20, -8, 20, -8, 20, 8, 20, 8, 8, 20
 stream = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
