@@ -40,7 +40,6 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[connection signal="area_entered" from="Body/Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="body_entered" from="Body/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="OpenTimer" to="." method="_on_OpenTimer_timeout"]
 [connection signal="timeout" from="LockTimer" to="." method="_on_LockTimer_timeout"]

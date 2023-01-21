@@ -1210,12 +1210,13 @@ receive_key = "C"
 position = Vector2( 0, 552 )
 
 [node name="Background" type="Polygon2D" parent="Room4"]
-position = Vector2( 0, 568 )
+position = Vector2( -7.62939e-06, 560 )
+rotation = 0.0103056
 scale = Vector2( 1.0056, 0.990628 )
 z_index = -1
 color = Color( 0, 0, 0, 1 )
 antialiased = true
-polygon = PoolVector2Array( 262.53, 32.3027, 755.768, 32.3027, 1439.94, 977.158, -477.327, 993.309 )
+polygon = PoolVector2Array( 262.926, 37.6299, 755.768, 32.3027, 1439.94, 977.158, -477.327, 993.309 )
 
 [node name="Door0" parent="Room4" instance=ExtResource( 3 )]
 position = Vector2( 512, 592 )
@@ -1239,7 +1240,8 @@ polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 
 [node name="Wall13" type="StaticBody2D" parent="Room4"]
-position = Vector2( 160, 1328 )
+position = Vector2( 328, 1512 )
+rotation = -0.414226
 physics_material_override = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -1252,8 +1254,8 @@ polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 
 [node name="Wall14" type="StaticBody2D" parent="Room4"]
-position = Vector2( 584, 824 )
-rotation = 1.0472
+position = Vector2( 704, 720 )
+rotation = 0.947781
 physics_material_override = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -1265,8 +1267,22 @@ polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall14"]
 polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 
+[node name="Wall17" type="StaticBody2D" parent="Room4"]
+position = Vector2( 792, 680 )
+rotation = 0.947781
+physics_material_override = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall17"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall17"]
+polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
+
 [node name="Wall15" type="StaticBody2D" parent="Room4"]
-position = Vector2( 80, 784 )
+position = Vector2( 96, 840 )
 rotation = 0.392287
 physics_material_override = SubResource( 2 )
 __meta__ = {
@@ -1280,7 +1296,7 @@ polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 polygon = PoolVector2Array( 0, 0, 512, 0, 512, 16, 0, 16 )
 
 [node name="Wall16" type="StaticBody2D" parent="Room4"]
-position = Vector2( 80, 904 )
+position = Vector2( 64, 880 )
 rotation = 0.764558
 physics_material_override = SubResource( 2 )
 __meta__ = {
@@ -1307,7 +1323,8 @@ polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 polygon = PoolVector2Array( 256, 0, 448, 0, 448, 16, 256, 16 )
 
 [node name="Wall5" type="StaticBody2D" parent="Room4"]
-position = Vector2( 888, 464 )
+position = Vector2( 784, 1208 )
+rotation = 1.05004
 physics_material_override = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -1320,7 +1337,7 @@ polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 
 [node name="Wall6" type="StaticBody2D" parent="Room4"]
-position = Vector2( -56, 1200 )
+position = Vector2( 968, 1320 )
 physics_material_override = SubResource( 4 )
 __meta__ = {
 "_edit_group_": true
@@ -1332,12 +1349,24 @@ polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall6"]
 polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
 
+[node name="Wall7" type="StaticBody2D" parent="Room4"]
+position = Vector2( 864, 1320 )
+physics_material_override = SubResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Room4/Wall7"]
+polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room4/Wall7"]
+polygon = PoolVector2Array( 0, 16, 16, 16, 16, 552, 0, 552 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 832 )
+position = Vector2( 512, 896 )
 physics_material_override = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 0, -8 )
 current = true
 limit_left = 0
 limit_right = 1024

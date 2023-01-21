@@ -14,9 +14,8 @@ var source = null
 var impulse = 10000
 var energy=1.0
 
-#var merged=false
-
-var is_Wavelet
+var merged=false
+var is_Wavelet=true
 
 func _ready():
 	var p = (p1+p2)/2
@@ -25,8 +24,8 @@ func _ready():
 
 func _process(delta):
 	
-#	if merged:
-#			return
+	if merged:
+		return
 	
 	var d = (p2-p1).length()
 	if d>16:
@@ -48,10 +47,10 @@ func _process(delta):
 	
 	if collision !=null and collision.collider != source:
 		if "is_Wavelet" in collision.collider:
-			set_global_position(newpos)
-			#var wavelet = collision.collider
-			#if wavelet.source != source and wavelet.note.key==note.key:
-			#	merge(collision.collider)
+			#set_global_position(newpos)
+			var wavelet = collision.collider
+			if wavelet.note.key==note.key:
+				merge(collision.collider)
 		else:
 			oldpos = newpos
 			newpos = get_global_position()
@@ -66,7 +65,7 @@ func _process(delta):
 			a1 = a1+(newangle-oldangle)
 			a2 = a2+(newangle-oldangle)
 			source=collision.collider
-			energy = energy*.90
+			energy = energy*1.0		# todo: depends on wall type
 			# TODO: move a bit further in reflected distance
 			
 		
@@ -103,25 +102,31 @@ func split():
 	$"..".add_child(wavelet2)
 	
 
-#func merge(wavelet):
-#	wavelet.queue_free()
-#	wavelet.merged = true   # prevent merging twice
-#	queue_free()
-#
-#	var wavelet2 = duplicate()
-#	wavelet2.energy=energy+wavelet.energy
-#	wavelet2.p1 = (p1 + wavelet.p1)/2
-#	wavelet2.p2 = (p2 + wavelet.p2)/2
-#	var a = a1+(fmod(a2-a1,PI)/2)
-#	var d = abs(a1-a)
-#	var wa = wavelet.a1+(fmod(wavelet.a2-wavelet.a1,PI)/2)
-#	var wd = abs(wavelet.a1-wa) 
-#	var ma = a+(fmod(wa-a,PI)/2)
-#	var w = (wa+wd)/2
-#	wavelet2.a1 = ma - w
-#	wavelet2.a2 = ma + w
-#	wavelet2.source=null
-#	wavelet2.note=Note.new("A")				# TEMP; wavelet.note must be same as mine?
-#	wavelet2.impulse=(impulse+wavelet.impulse)/2
-#	$"..".add_child(wavelet2)
-#
+
+# TODO: merge is not called, it seems...
+func merge(wavelet):
+	wavelet.queue_free()
+	wavelet.merged = true
+	
+	queue_free()
+	merged = true
+	
+	var wavelet2 = duplicate()
+	wavelet2.energy=energy+wavelet.energy
+	wavelet2.p1 = (p1 + wavelet.p1)/2
+	wavelet2.p2 = (p2 + wavelet.p2)/2
+	var a = a1+(fmod(a2-a1,PI)/2)
+	var d = abs(a1-a)
+	var wa = wavelet.a1+(fmod(wavelet.a2-wavelet.a1,PI)/2)
+	var wd = abs(wavelet.a1-wa) 
+	var ma = a+(fmod(wa-a,PI)/2)
+	var w = (d+wd)/2
+	wavelet2.a1 = ma - w
+	wavelet2.a2 = ma + w
+	wavelet2.source=null
+	#wavelet2.note=Note.new(wavelet.note.key)
+	wavelet2.note=Note.new("B")    # test
+	
+	wavelet2.impulse=(impulse+wavelet.impulse)/2
+	$"..".add_child(wavelet2)
+
