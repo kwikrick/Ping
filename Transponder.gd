@@ -80,4 +80,4 @@ func _on_Area2D_body_entered(body):
 			impulse += Vector2(wave.impulse*wave.energy,0).rotated(angle)
 			wave.queue_free()
 			if wave.note.key == receive_key:
-				ping()
+				call_deferred("ping")
